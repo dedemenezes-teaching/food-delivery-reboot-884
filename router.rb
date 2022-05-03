@@ -1,5 +1,9 @@
 # TODO: implement the router of your app.
 class Router
+  def initialize(meals_controller)
+    @meals_controller = meals_controller
+  end
+
   def run
     # DISPLAY WELCOME MESSAGE
     welcome
@@ -25,8 +29,8 @@ class Router
 
   def route_to(action)
     case action
-    when 1 then puts "ADD NEW MEAL"
-    when 2 then puts "LIST MEALS"
+    when 1 then @meals_controller.add
+    when 2 then @meals_controller.list
     when 3 then puts "ADD NEW CUSTOMER"
     when 4 then puts "LIST CUSTOMERS"
     when 5 then @running = false
