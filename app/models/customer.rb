@@ -7,4 +7,17 @@ class Customer
     @name = attributes[:name]
     @address = attributes[:address]
   end
+
+  def self.insert_header
+    %w[id name address]
+  end
+
+  def insert_row
+    [@id, @name, @address]
+  end
+
+  def self.prepare_row(row)
+    row[:id] = row[:id].to_i
+    row
+  end
 end
