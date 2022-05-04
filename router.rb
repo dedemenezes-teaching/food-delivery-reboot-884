@@ -1,4 +1,3 @@
-# TODO: implement the router of your app.
 class Router
   def initialize(meals_controller, customers_controller)
     @meals_controller = meals_controller
@@ -6,20 +5,14 @@ class Router
   end
 
   def run
-    # DISPLAY WELCOME MESSAGE
     welcome
     @running = true
     while @running
-      # DISPLAY MENU OPTIONS
       display_menu
-      # ASK USER ACTION
       user_action = gets.chomp.to_i
-      # REDIRECT TO THE CORRECT CONTROLLER ACTION/METHOD
       route_to(user_action)
-      # QUIT
     end
     puts "Bye bye\nzo/"
-    # SAY BYE
   end
 
   def welcome
