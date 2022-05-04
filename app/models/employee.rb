@@ -1,6 +1,7 @@
 class Employee
-  attr_reader :username, :password
+  attr_reader :username, :password, :role
   attr_accessor :id
+
   # STATE/PROPERTIES
   # id, username, password, role
   def initialize(attributes = {})
@@ -8,6 +9,10 @@ class Employee
     @username = attributes[:username]
     @password = attributes[:password]
     @role    = attributes[:role] # manager / rider
+  end
+
+  def rider?
+    @role == 'rider'
   end
 
   def manager?

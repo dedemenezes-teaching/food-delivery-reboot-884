@@ -7,6 +7,12 @@ class EmployeeRepository < BaseRepository
     super(csv_file)
   end
 
+  undef_method :create
+
+  def all_riders
+    @elements.select { |employee| employee.rider? }
+  end
+
   def find_by_username(username)
     @elements.find { |employee| employee.username == username }
   end
