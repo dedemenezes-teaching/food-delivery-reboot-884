@@ -33,7 +33,7 @@ class BaseRepository
   end
 
   def load_csv
-    CSV.foreach(@csv_file,  headers: :first_row, header_converters: :symbol) do |row|
+    CSV.foreach(@csv_file, headers: :first_row, header_converters: :symbol) do |row|
       row = @klass.prepare_row(row)
       element = @klass.new(row)
       @elements << element
