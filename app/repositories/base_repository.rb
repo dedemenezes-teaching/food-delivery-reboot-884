@@ -25,12 +25,9 @@ class BaseRepository
 
   def save_csv
     CSV.open(@csv_file, 'wb') do |csv|
-      # PUSH THE HEADERS
-      csv << @klass.insert_header #=> [id, name, address/price]
-      # ADD EACH INSTANCE INTO A NEW CSV LINE
+      csv << @klass.insert_header
       @elements.each do |element|
-        # ELEMENT IS AN INSTANCE
-        csv << element.insert_row #=> [element.id...]
+        csv << element.insert_row
       end
     end
   end
