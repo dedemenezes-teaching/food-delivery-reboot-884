@@ -1,8 +1,9 @@
 class Router
-  def initialize(meals_controller, customers_controller, sessions_controller)
+  def initialize(meals_controller, customers_controller, sessions_controller, orders_controller)
     @meals_controller = meals_controller
     @customers_controller = customers_controller
     @sessions_controller = sessions_controller
+    @orders_controller = orders_controller
     @running = true
   end
 
@@ -28,12 +29,18 @@ class Router
   def display_rider_menu
     puts "1. List my undelivered orders"
     puts "2. Mark an order as delivered"
+    puts "8. Logout"
+    puts "9. Quit"
   end
 
   def route_rider_to(action)
     case action
-    when 1 then puts "TODO: LIST UNDELIVERED ORDERS"
-    when 2 then puts "TODO: MARK AN ORDER AS DELIVERED"
+    when 1 then @orders_controller.list_my_orders(@employee)
+    when 2 then @orders_controller.mark_as_delivered(@employee)
+    when 8 then @employee = nil
+    when 9
+      @employee = nil
+      @running = false
     else
       puts "Press 1, 2, 3, 4 or 5"
     end
@@ -51,8 +58,12 @@ class Router
     when 2 then @meals_controller.list
     when 3 then @customers_controller.add
     when 4 then @customers_controller.list
-    when 5 then @employee = nil
-    when 6 then @running = false
+    when 5 then @orders_controller.add
+    when 6 then @orders_controller.list_undelivered_orders
+    when 8 then @employee = nil
+    when 9
+      @employee = nil
+      @running = false
     else
       puts "Press 1, 2, 3, 4 , 5 or 6"
     end
@@ -63,7 +74,9 @@ class Router
     puts '2. List all the meals'
     puts '3. Add a new customer'
     puts '4. List all the customers'
-    puts "5. Logout"
-    puts '6. Quit'
+    puts '5. Add a new order'
+    puts '6. List all the undelivered orders'
+    puts "8. Logout"
+    puts '9. Quit'
   end
 end
